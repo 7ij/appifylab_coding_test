@@ -1,4 +1,5 @@
 class Session {
+  final int id;
   final String title;
   final int completionPercentage;
   final bool isCurrent;
@@ -13,9 +14,11 @@ class Session {
     this.date,
     this.children,
     required this.isCompleted,
+    required this.id,
   });
 
   Session copyWith({
+    int? id,
     String? title,
     int? completionPercentage,
     bool? isCurrent,
@@ -24,6 +27,7 @@ class Session {
     bool? isCompleted,
   }) {
     return Session(
+      id: id ?? this.id,
       title: title ?? this.title,
       completionPercentage: completionPercentage ?? this.completionPercentage,
       isCurrent: isCurrent ?? this.isCurrent,
