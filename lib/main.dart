@@ -3,8 +3,9 @@ import 'package:appifylab_coding_test/presentation/screen/splash/splash_screen.d
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() {
-  setupDi();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupDi();
   runApp(const MyApp());
 }
 

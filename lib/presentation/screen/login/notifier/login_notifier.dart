@@ -1,50 +1,11 @@
+import 'package:appifylab_coding_test/di/injection_container.dart';
+import 'package:appifylab_coding_test/domain/model/login_credential.dart';
+import 'package:appifylab_coding_test/domain/use_case/login_with_email_pass_use_case.dart';
+import 'package:appifylab_coding_test/domain/util/result.dart';
+import 'package:appifylab_coding_test/presentation/screen/login/state/login_status.dart';
+import 'package:appifylab_coding_test/presentation/screen/login/state/login_ui_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-enum LoginStatus {
-  idle,
-  submitting,
-  success,
-  error,
-}
-
-class LoginUiState {
-  const LoginUiState({
-    this.email = '',
-    this.password = '',
-    this.rememberMe = false,
-    this.obscurePassword = true,
-    this.status = LoginStatus.idle,
-    this.errorMessage,
-  });
-
-  final String email;
-  final String password;
-  final bool rememberMe;
-  final bool obscurePassword;
-  final LoginStatus status;
-  final String? errorMessage;
-
-  bool get isLoading => status == LoginStatus.submitting;
-
-  LoginUiState copyWith({
-    String? email,
-    String? password,
-    bool? rememberMe,
-    bool? obscurePassword,
-    LoginStatus? status,
-    String? errorMessage,
-  }) {
-    return LoginUiState(
-      email: email ?? this.email,
-      password: password ?? this.password,
-      rememberMe: rememberMe ?? this.rememberMe,
-      obscurePassword: obscurePassword ?? this.obscurePassword,
-      status: status ?? this.status,
-      errorMessage: errorMessage,
-    );
-  }
-}
 
 class LoginNotifier extends StateNotifier<LoginUiState> {
   LoginNotifier() : super(const LoginUiState());
@@ -80,8 +41,10 @@ class LoginNotifier extends StateNotifier<LoginUiState> {
     if (trimmed.isEmpty) {
       return 'Please enter your email';
     }
-    final emailRegex =
-        RegExp(r'^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$', caseSensitive: false);
+    final emailRegex = RegExp(
+      r'^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$',
+      caseSensitive: false,
+    );
     if (!emailRegex.hasMatch(trimmed)) {
       return 'Enter a valid email address';
     }
@@ -109,29 +72,40 @@ class LoginNotifier extends StateNotifier<LoginUiState> {
       return;
     }
 
-    state = state.copyWith(
-      status: LoginStatus.submitting,
-      errorMessage: null,
-    );
+    state = state.copyWith(status: LoginStatus.submitting, errorMessage: null);
 
     try {
-      await Future<void>.delayed(const Duration(seconds: 2));
-
-      // Simulated successful authentication.
-      state = state.copyWith(
-        status: LoginStatus.success,
-        errorMessage: null,
+      final useCase = getIt<LoginWithEmailPassUseCase>();
+      final Result<void> result = await useCase(
+        LoginCredential(email: state.email, password: state.password),
+      );
+      result.when(
+        success: (_) {
+          state = state.copyWith(
+            status: LoginStatus.success,
+            errorMessage: null,
+          );
+        },
+        failure: () {
+          state = state.copyWith(
+            status: LoginStatus.error,
+            errorMessage: genericErrorMsg,
+          );
+        },
       );
     } catch (error) {
+      debugPrint("error: $error");
       state = state.copyWith(
         status: LoginStatus.error,
-        errorMessage: 'Something went wrong. Please try again.',
+        errorMessage: genericErrorMsg,
       );
     }
   }
+
+  String get genericErrorMsg => "Something went wrong. Please try again.";
 }
 
 final loginNotifierProvider =
     StateNotifierProvider<LoginNotifier, LoginUiState>((ref) {
-  return LoginNotifier();
-});
+      return LoginNotifier();
+    });

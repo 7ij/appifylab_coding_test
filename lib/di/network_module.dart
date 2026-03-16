@@ -1,18 +1,18 @@
+import 'package:appifylab_coding_test/di/injection_container.dart';
 import 'package:appifylab_coding_test/di/util/api_client.dart';
 import 'package:appifylab_coding_test/di/util/auth_interceptor.dart';
-import 'package:appifylab_coding_test/di/injection_container.dart';
 import 'package:dio/dio.dart';
 
-Future<void> setupNetworkModule() async {
-  final baseUrl = "https://demo1.ezycourse.com/api/app";
+void setupNetworkModule() {
+  const String baseUrl = "https://demo1.ezycourse.com/api/app";
+  const int timeOut = 120;
 
-  getIt.registerSingletonAsync<AuthInterceptor>(
-    () async => AuthInterceptor(identityLocalDataSource: getIt()),
+  getIt.registerLazySingleton<AuthInterceptor>(
+    () => AuthInterceptor(identityLocalDataSource: getIt()),
   );
 
-  getIt.registerLazySingleton<Dio>(() {
-    const int timeOut = 120;
-    return Dio(
+  getIt.registerLazySingleton<Dio>(
+    () => Dio(
       BaseOptions(
         baseUrl: baseUrl,
         connectTimeout: const Duration(seconds: timeOut),
@@ -22,8 +22,10 @@ Future<void> setupNetworkModule() async {
           'Accept': 'application/json',
         },
       ),
-    )..interceptors.addAll([getIt<AuthInterceptor>()]);
-  });
-  
-  getIt.registerLazySingleton<ApiClient>(() => ApiClient(dio: getIt()));
+    )..interceptors.add(getIt<AuthInterceptor>()),
+  );
+
+  getIt.registerLazySingleton<ApiClient>(
+    () => ApiClient(dio: getIt()),
+  );
 }
