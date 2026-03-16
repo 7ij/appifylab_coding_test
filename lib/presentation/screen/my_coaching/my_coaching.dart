@@ -22,7 +22,6 @@ class _MyCoachingScreenState extends State<MyCoachingScreen> {
           ];
         },
         body: CustomScrollView(
-
           slivers: [
             SliverPadding(
               padding: EdgeInsetsGeometry.symmetric(horizontal: 12),

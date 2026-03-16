@@ -33,6 +33,26 @@ class ApiClient {
     );
   }
 
+  Future<R> get<T, R>({
+    required String path,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
+    required Converter<T, R> converter,
+  }) {
+    return _requestAndConvert<T, R>(
+      method: () => dio.get(
+        path,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress,
+      ),
+      converter: converter,
+    );
+  }
+
   Future<R> _requestAndConvert<T, R>({
     required HttpLibraryMethod<T> method,
     required Converter<T, R> converter,
