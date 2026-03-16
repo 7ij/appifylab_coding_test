@@ -3,6 +3,8 @@ import 'package:appifylab_coding_test/data/repository/coaching_program_repositor
 import 'package:appifylab_coding_test/di/injection_container.dart';
 import 'package:appifylab_coding_test/domain/repository/auth_repository.dart';
 import 'package:appifylab_coding_test/domain/repository/coaching_program_repository.dart';
+import 'package:appifylab_coding_test/domain/repository/coach_note_repository.dart';
+import 'package:appifylab_coding_test/data/repository/coach_note_repository_impl.dart';
 
 void setupRepositoryModule() {
   getIt.registerLazySingleton<AuthRepository>(
@@ -11,5 +13,8 @@ void setupRepositoryModule() {
   );
   getIt.registerLazySingleton<CoachingProgramRepository>(
     () => CoachingProgramRepositoryImpl(coachingProgramApi: getIt()),
+  );
+  getIt.registerLazySingleton<CoachNoteRepository>(
+    () => CoachNoteRepositoryImpl(coachNoteApi: getIt()),
   );
 }
