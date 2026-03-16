@@ -1,4 +1,5 @@
 import 'package:appifylab_coding_test/data/api/coach_note_api.dart';
+import 'package:appifylab_coding_test/data/mapper/coach_note_mapper.dart';
 import 'package:appifylab_coding_test/data/mapper/common/paginated_data_response_mapper.dart';
 import 'package:appifylab_coding_test/domain/model/coach_note.dart';
 import 'package:appifylab_coding_test/domain/model/coach_note_query.dart';

@@ -1,6 +1,7 @@
 import 'package:appifylab_coding_test/domain/model/coaching_details.dart';
 import 'package:appifylab_coding_test/domain/model/coaching_program_card.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/infographic_section.dart';
+import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/notes_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 class CoachingDetailsSliverAppBar extends StatelessWidget {
@@ -23,8 +24,13 @@ class CoachingDetailsSliverAppBar extends StatelessWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.event_note_outlined),
-          onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Notes will be opened later")),
+          onPressed: () => showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            builder: (context) => NotesBottomSheet(
+              coachingProgramId: coachingProgram.id,
+            ),
           ),
         ),
         IconButton(
