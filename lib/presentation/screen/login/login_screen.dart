@@ -172,22 +172,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           'Remember me',
                           style: textTheme.bodyMedium,
                         ),
-                        const Spacer(),
-                        TextButton(
-                          onPressed: state.isLoading ? null : () {},
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            minimumSize: const Size(0, 0),
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          ),
-                          child: Text(
-                            'Forgot Password?',
-                            style: textTheme.bodyMedium?.copyWith(
-                              color: colorScheme.primary,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -197,7 +181,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         onPressed: state.isLoading
                             ? null
                             : () => notifier.submit(
-                                  onSuccess: () => context.goNamed(RouteNames.home),
+                                  onSuccess: () => context.goNamed(RouteNames.myCoaching),
                                 ),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 16),
@@ -264,28 +248,34 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    "You haven't any account?",
-                    style: textTheme.bodyMedium?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
+                  Flexible(
+                    child: Text(
+                      "You haven't any account?",
+                      style: textTheme.bodyMedium?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 6),
-                  TextButton(
-                    onPressed: state.isLoading ? null : () {},
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      minimumSize: const Size(0, 0),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(
-                        color: colorScheme.primary,
-                        fontWeight: FontWeight.w600,
+                  Flexible(
+                    child: TextButton(
+                      onPressed: state.isLoading ? null : () {},
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(0, 0),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: Text(
+                        'Don\'t worry. Use\n fluttertester@appifylab.com\n 123456@@',
+                        style: TextStyle(
+                          color: colorScheme.primary,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),

@@ -26,11 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
     if (!mounted) return;
 
     if (loggedIn) {
-      context.goNamed(RouteNames.home);
+      context.goNamed(RouteNames.myCoaching);
     } else {
       context.goNamed(RouteNames.login);
     }
   }
+
   Future<bool> _isLoggedIn() async => false;
 
   @override
