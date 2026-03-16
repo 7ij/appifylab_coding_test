@@ -1,5 +1,7 @@
+import 'package:appifylab_coding_test/presentation/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import 'notifier/login_notifier.dart';
 
@@ -192,7 +194,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: state.isLoading ? null : notifier.submit,
+                        onPressed: state.isLoading
+                            ? null
+                            : () => notifier.submit(
+                                  onSuccess: () => context.goNamed(RouteNames.home),
+                                ),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           backgroundColor: colorScheme.primary,

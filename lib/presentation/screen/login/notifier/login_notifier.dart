@@ -62,15 +62,10 @@ class LoginNotifier extends StateNotifier<LoginUiState> {
     return null;
   }
 
-  Future<void> submit() async {
+  Future<void> submit({VoidCallback? onSuccess}) async {
     final currentForm = formKey.currentState;
-    if (currentForm == null) {
-      return;
-    }
-
-    if (!currentForm.validate()) {
-      return;
-    }
+    if (currentForm == null) return;
+    if (!currentForm.validate()) return;
 
     state = state.copyWith(status: LoginStatus.submitting, errorMessage: null);
 
@@ -85,6 +80,7 @@ class LoginNotifier extends StateNotifier<LoginUiState> {
             status: LoginStatus.success,
             errorMessage: null,
           );
+          onSuccess?.call();
         },
         failure: () {
           state = state.copyWith(
@@ -94,7 +90,7 @@ class LoginNotifier extends StateNotifier<LoginUiState> {
         },
       );
     } catch (error) {
-      debugPrint("error: $error");
+      debugPrint('LoginNotifier error: $error');
       state = state.copyWith(
         status: LoginStatus.error,
         errorMessage: genericErrorMsg,
@@ -102,7 +98,7 @@ class LoginNotifier extends StateNotifier<LoginUiState> {
     }
   }
 
-  String get genericErrorMsg => "Something went wrong. Please try again.";
+  String get genericErrorMsg => 'Something went wrong. Please try again.';
 }
 
 final loginNotifierProvider =
