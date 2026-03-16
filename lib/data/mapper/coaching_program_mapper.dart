@@ -8,6 +8,7 @@ extension CoachingProgramMapper on CoachingProgramResponse {
       title: title ?? '',
       memberCount: totalMembers ?? 0,
       status: status ?? '',
+      id: id ?? -1,
     );
   }
 }

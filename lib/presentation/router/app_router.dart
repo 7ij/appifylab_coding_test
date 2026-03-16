@@ -1,4 +1,6 @@
+import 'package:appifylab_coding_test/domain/model/coaching_program_card.dart';
 import 'package:appifylab_coding_test/presentation/router/unknown_route.dart';
+import 'package:appifylab_coding_test/presentation/screen/coaching_details/coaching_details_screen.dart';
 import 'package:appifylab_coding_test/presentation/screen/home/home_screen.dart';
 import 'package:appifylab_coding_test/presentation/screen/login/login_screen.dart';
 import 'package:appifylab_coding_test/presentation/screen/my_coaching/my_coaching.dart';
@@ -11,6 +13,7 @@ abstract final class RouteNames {
   static const login = 'login';
   static const home = 'home';
   static const myCoaching = 'my_coaching';
+  static const coachingDetails = 'coaching_details';
 }
 
 abstract final class RoutePaths {
@@ -18,6 +21,7 @@ abstract final class RoutePaths {
   static const login = '/login';
   static const home = '/home';
   static const myCoaching = '/my_coaching';
+  static const coachingDetails = '/coaching_details';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -47,6 +51,17 @@ final GoRouter appRouter = GoRouter(
       name: RouteNames.myCoaching,
       pageBuilder: (context, state) =>
           _buildPage(key: state.pageKey, child: const MyCoachingScreen()),
+    ),
+    GoRoute(
+      path: RoutePaths.coachingDetails,
+      name: RouteNames.coachingDetails,
+      pageBuilder: (context, state) {
+        final coachingProgram = state.extra as CoachingProgramCard;
+        return _buildPage(
+          key: state.pageKey,
+          child: CoachingDetailsScreen(coachingProgram: coachingProgram),
+        );
+      },
     ),
   ],
   errorPageBuilder: (context, state) => _buildPage(

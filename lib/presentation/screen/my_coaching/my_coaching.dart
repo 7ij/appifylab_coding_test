@@ -1,10 +1,10 @@
-import 'package:appifylab_coding_test/domain/model/coaching_program_card.dart';
+import 'package:appifylab_coding_test/presentation/router/app_router.dart';
 import 'package:appifylab_coding_test/presentation/screen/my_coaching/notifier/coaching_program_notifier.dart';
 import 'package:appifylab_coding_test/presentation/screen/my_coaching/widget/coaching_program_card_widget.dart';
 import 'package:appifylab_coding_test/presentation/screen/my_coaching/widget/search_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:go_router/go_router.dart';
 class MyCoachingScreen extends ConsumerStatefulWidget {
   const MyCoachingScreen({super.key});
 
@@ -57,8 +57,9 @@ class _MyCoachingScreenState extends ConsumerState<MyCoachingScreen> {
                         final program = state.programs[index];
                         return CoachingProgramCardWidget(
                           onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Navigate to ${program.title}')),
+                            context.pushNamed(
+                              RouteNames.coachingDetails,
+                              extra: program,
                             );
                           },
                           coachingProgramCard: program,
