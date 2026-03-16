@@ -1,47 +1,28 @@
-import 'package:appifylab_coding_test/presentation/router/app_router.dart';
+import 'package:appifylab_coding_test/presentation/screen/splash/notifier/splash_notifier.dart';
+import 'package:appifylab_coding_test/presentation/screen/splash/state/splash_ui_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerWidget {
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(splashUiEffectNotifierProvider, (prev, next) {
+      if (prev == next) return;
+      switch (next) {
+        case NavigateToScreen():
+          debugPrint(next.screenName);
+          context.goNamed(next.screenName);
+        case null:
+      }
+    });
 
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _navigate();
-  }
-
-  Future<void> _navigate() async {
-    await Future.delayed(const Duration(seconds: 2));
-
-    if (!mounted) return;
-
-    final bool loggedIn = await _isLoggedIn();
-
-    if (!mounted) return;
-
-    if (loggedIn) {
-      context.goNamed(RouteNames.myCoaching);
-    } else {
-      context.goNamed(RouteNames.login);
-    }
-  }
-
-  Future<bool> _isLoggedIn() async => false;
-
-  @override
-  Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       backgroundColor: colorScheme.primary,
-      body: const Center(
-        child: CircularProgressIndicator(color: Colors.white),
-      ),
+      body: const Center(child: CircularProgressIndicator(color: Colors.white)),
     );
   }
 }
