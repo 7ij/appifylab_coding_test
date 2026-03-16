@@ -3,7 +3,6 @@ import 'package:appifylab_coding_test/data/model/response/coach_feed_content_res
 import 'package:appifylab_coding_test/data/model/response/session_response.dart';
 import 'package:appifylab_coding_test/domain/model/coaching_details.dart';
 import 'package:appifylab_coding_test/domain/model/session.dart';
-import 'package:flutter/material.dart';
 
 extension CoachingDetailsResponseMapper on CoachFeedContentResponse {
   CoachingDetails toDomain() {
@@ -34,8 +33,17 @@ extension CoachingDetailsResponseMapper on CoachFeedContentResponse {
 
     final List<Session> sessionList = [];
     for (final e in parentSessionResponseList) {
-      final childrenList = map[e.id!]!.map((elem) => elem.toDomain()).toList();
-      sessionList.add(e.toDomain().copyWith(children: childrenList));
+      bool isCurrent = false;
+      final childrenList = map[e.id!]!.map((elem) {
+        final elemModel = elem.toDomain();
+        if (elemModel.isCurrent) {
+          isCurrent = true;
+        }
+        return elemModel;
+      }).toList();
+      sessionList.add(
+        e.toDomain().copyWith(children: childrenList, isCurrent: isCurrent),
+      );
     }
     return sessionList;
   }

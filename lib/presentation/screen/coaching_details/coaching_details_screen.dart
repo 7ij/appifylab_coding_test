@@ -34,7 +34,13 @@ class CoachingDetailsScreen extends ConsumerWidget {
                   horizontal: 16.0,
                   vertical: 16,
                 ),
-                sliver: FeedList(),
+                sliver: FeedList(
+                  coachingId: coachingId,
+                  sessionId: ref
+                          .read(coachingDetailsNotifierProvider(coachingId).notifier)
+                          .currentSessionId ??
+                      0,
+                ),
               ),
               const SliverToBoxAdapter(
                 child: Padding(
