@@ -3,8 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatefulWidget {
+  final ValueChanged<String>? onSearch;
+  
   const SearchWidget({
     super.key,
+    this.onSearch,
   });
 
   @override
@@ -19,7 +22,7 @@ class _SearchWidgetState extends State<SearchWidget> {
   void _onSearchChanged(String value) {
     _debounceTimer?.cancel();
     _debounceTimer = Timer(_debounceDuration, () {
-      debugPrint('Search: $value');
+      widget.onSearch?.call(value);
     });
   }
 
