@@ -13,6 +13,7 @@ class AuthApiImpl extends AuthApi {
   Future<LoginResponse> emailPassLogin(LoginRequest requestBody) {
     return client.post<JSONObject, LoginResponse>(
       path: path,
+      data: requestBody.toJson(),
       converter: (json) => LoginResponse.fromJson(json),
     );
   }
