@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$SessionResponse {
 
-@JsonKey(name: 'id') int? get id;@JsonKey(name: 'session_name') String? get sessionName;@JsonKey(name: 'completion_required') int? get completionRequired;@JsonKey(name: 'is_completed') int? get isCompleted;@JsonKey(name: 'is_current') int? get isCurrent;@JsonKey(name: 'parent_id') int? get parentId;@JsonKey(name: 'session_date') String? get sessionDate;@JsonKey(name: 'batch_id') int? get batchId;@JsonKey(name: 'week_based') String? get weekBased;@JsonKey(name: 'drip_days') int? get dripDays;@JsonKey(name: 'is_reordered') int? get isReordered;
+ int? get id; String? get sessionName; int? get completionRequired; int? get isCompleted; int? get isCurrent; int? get parentId; String? get sessionDate; int? get batchId; String? get weekBased; int? get dripDays; int? get isReordered;
 /// Create a copy of SessionResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $SessionResponseCopyWith<$Res>  {
   factory $SessionResponseCopyWith(SessionResponse value, $Res Function(SessionResponse) _then) = _$SessionResponseCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'id') int? id,@JsonKey(name: 'session_name') String? sessionName,@JsonKey(name: 'completion_required') int? completionRequired,@JsonKey(name: 'is_completed') int? isCompleted,@JsonKey(name: 'is_current') int? isCurrent,@JsonKey(name: 'parent_id') int? parentId,@JsonKey(name: 'session_date') String? sessionDate,@JsonKey(name: 'batch_id') int? batchId,@JsonKey(name: 'week_based') String? weekBased,@JsonKey(name: 'drip_days') int? dripDays,@JsonKey(name: 'is_reordered') int? isReordered
+ int? id, String? sessionName, int? completionRequired, int? isCompleted, int? isCurrent, int? parentId, String? sessionDate, int? batchId, String? weekBased, int? dripDays, int? isReordered
 });
 
 
@@ -163,7 +163,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'session_name')  String? sessionName, @JsonKey(name: 'completion_required')  int? completionRequired, @JsonKey(name: 'is_completed')  int? isCompleted, @JsonKey(name: 'is_current')  int? isCurrent, @JsonKey(name: 'parent_id')  int? parentId, @JsonKey(name: 'session_date')  String? sessionDate, @JsonKey(name: 'batch_id')  int? batchId, @JsonKey(name: 'week_based')  String? weekBased, @JsonKey(name: 'drip_days')  int? dripDays, @JsonKey(name: 'is_reordered')  int? isReordered)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? sessionName,  int? completionRequired,  int? isCompleted,  int? isCurrent,  int? parentId,  String? sessionDate,  int? batchId,  String? weekBased,  int? dripDays,  int? isReordered)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _SessionResponse() when $default != null:
 return $default(_that.id,_that.sessionName,_that.completionRequired,_that.isCompleted,_that.isCurrent,_that.parentId,_that.sessionDate,_that.batchId,_that.weekBased,_that.dripDays,_that.isReordered);case _:
@@ -184,7 +184,7 @@ return $default(_that.id,_that.sessionName,_that.completionRequired,_that.isComp
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'session_name')  String? sessionName, @JsonKey(name: 'completion_required')  int? completionRequired, @JsonKey(name: 'is_completed')  int? isCompleted, @JsonKey(name: 'is_current')  int? isCurrent, @JsonKey(name: 'parent_id')  int? parentId, @JsonKey(name: 'session_date')  String? sessionDate, @JsonKey(name: 'batch_id')  int? batchId, @JsonKey(name: 'week_based')  String? weekBased, @JsonKey(name: 'drip_days')  int? dripDays, @JsonKey(name: 'is_reordered')  int? isReordered)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? sessionName,  int? completionRequired,  int? isCompleted,  int? isCurrent,  int? parentId,  String? sessionDate,  int? batchId,  String? weekBased,  int? dripDays,  int? isReordered)  $default,) {final _that = this;
 switch (_that) {
 case _SessionResponse():
 return $default(_that.id,_that.sessionName,_that.completionRequired,_that.isCompleted,_that.isCurrent,_that.parentId,_that.sessionDate,_that.batchId,_that.weekBased,_that.dripDays,_that.isReordered);case _:
@@ -204,7 +204,7 @@ return $default(_that.id,_that.sessionName,_that.completionRequired,_that.isComp
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'id')  int? id, @JsonKey(name: 'session_name')  String? sessionName, @JsonKey(name: 'completion_required')  int? completionRequired, @JsonKey(name: 'is_completed')  int? isCompleted, @JsonKey(name: 'is_current')  int? isCurrent, @JsonKey(name: 'parent_id')  int? parentId, @JsonKey(name: 'session_date')  String? sessionDate, @JsonKey(name: 'batch_id')  int? batchId, @JsonKey(name: 'week_based')  String? weekBased, @JsonKey(name: 'drip_days')  int? dripDays, @JsonKey(name: 'is_reordered')  int? isReordered)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? sessionName,  int? completionRequired,  int? isCompleted,  int? isCurrent,  int? parentId,  String? sessionDate,  int? batchId,  String? weekBased,  int? dripDays,  int? isReordered)?  $default,) {final _that = this;
 switch (_that) {
 case _SessionResponse() when $default != null:
 return $default(_that.id,_that.sessionName,_that.completionRequired,_that.isCompleted,_that.isCurrent,_that.parentId,_that.sessionDate,_that.batchId,_that.weekBased,_that.dripDays,_that.isReordered);case _:
@@ -219,20 +219,20 @@ return $default(_that.id,_that.sessionName,_that.completionRequired,_that.isComp
 @JsonSerializable()
 
 class _SessionResponse implements SessionResponse {
-  const _SessionResponse({@JsonKey(name: 'id') this.id, @JsonKey(name: 'session_name') this.sessionName, @JsonKey(name: 'completion_required') this.completionRequired, @JsonKey(name: 'is_completed') this.isCompleted, @JsonKey(name: 'is_current') this.isCurrent, @JsonKey(name: 'parent_id') this.parentId, @JsonKey(name: 'session_date') this.sessionDate, @JsonKey(name: 'batch_id') this.batchId, @JsonKey(name: 'week_based') this.weekBased, @JsonKey(name: 'drip_days') this.dripDays, @JsonKey(name: 'is_reordered') this.isReordered});
+  const _SessionResponse({this.id, this.sessionName, this.completionRequired, this.isCompleted, this.isCurrent, this.parentId, this.sessionDate, this.batchId, this.weekBased, this.dripDays, this.isReordered});
   factory _SessionResponse.fromJson(Map<String, dynamic> json) => _$SessionResponseFromJson(json);
 
-@override@JsonKey(name: 'id') final  int? id;
-@override@JsonKey(name: 'session_name') final  String? sessionName;
-@override@JsonKey(name: 'completion_required') final  int? completionRequired;
-@override@JsonKey(name: 'is_completed') final  int? isCompleted;
-@override@JsonKey(name: 'is_current') final  int? isCurrent;
-@override@JsonKey(name: 'parent_id') final  int? parentId;
-@override@JsonKey(name: 'session_date') final  String? sessionDate;
-@override@JsonKey(name: 'batch_id') final  int? batchId;
-@override@JsonKey(name: 'week_based') final  String? weekBased;
-@override@JsonKey(name: 'drip_days') final  int? dripDays;
-@override@JsonKey(name: 'is_reordered') final  int? isReordered;
+@override final  int? id;
+@override final  String? sessionName;
+@override final  int? completionRequired;
+@override final  int? isCompleted;
+@override final  int? isCurrent;
+@override final  int? parentId;
+@override final  String? sessionDate;
+@override final  int? batchId;
+@override final  String? weekBased;
+@override final  int? dripDays;
+@override final  int? isReordered;
 
 /// Create a copy of SessionResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -267,7 +267,7 @@ abstract mixin class _$SessionResponseCopyWith<$Res> implements $SessionResponse
   factory _$SessionResponseCopyWith(_SessionResponse value, $Res Function(_SessionResponse) _then) = __$SessionResponseCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'id') int? id,@JsonKey(name: 'session_name') String? sessionName,@JsonKey(name: 'completion_required') int? completionRequired,@JsonKey(name: 'is_completed') int? isCompleted,@JsonKey(name: 'is_current') int? isCurrent,@JsonKey(name: 'parent_id') int? parentId,@JsonKey(name: 'session_date') String? sessionDate,@JsonKey(name: 'batch_id') int? batchId,@JsonKey(name: 'week_based') String? weekBased,@JsonKey(name: 'drip_days') int? dripDays,@JsonKey(name: 'is_reordered') int? isReordered
+ int? id, String? sessionName, int? completionRequired, int? isCompleted, int? isCurrent, int? parentId, String? sessionDate, int? batchId, String? weekBased, int? dripDays, int? isReordered
 });
 
 
