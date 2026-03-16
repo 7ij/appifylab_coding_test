@@ -7,12 +7,10 @@ import 'package:flutter/material.dart';
 class CoachingDetailsSliverAppBar extends StatelessWidget {
   const CoachingDetailsSliverAppBar({
     super.key,
-    required this.coachingProgram,
-    required this.details,
+    required this.coachingDetails,
   });
 
-  final CoachingProgramCard coachingProgram;
-  final CoachingDetails details;
+  final CoachingDetails coachingDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +18,7 @@ class CoachingDetailsSliverAppBar extends StatelessWidget {
       expandedHeight: 250.0,
       floating: false,
       pinned: true,
-      title: Text(coachingProgram.title),
+      title: Text(coachingDetails.title),
       actions: [
         IconButton(
           icon: const Icon(Icons.event_note_outlined),
@@ -29,7 +27,7 @@ class CoachingDetailsSliverAppBar extends StatelessWidget {
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
             builder: (context) => NotesBottomSheet(
-              coachingProgramId: coachingProgram.id,
+              coachingProgramId: coachingDetails.id,
             ),
           ),
         ),
@@ -38,7 +36,7 @@ class CoachingDetailsSliverAppBar extends StatelessWidget {
           onPressed: Scaffold.of(context).openEndDrawer,
         ),
       ],
-      flexibleSpace: InfographicSection(details: details),
+      flexibleSpace: InfographicSection(details: coachingDetails),
     );
   }
 }

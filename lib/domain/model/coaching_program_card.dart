@@ -13,13 +13,5 @@ class CoachingProgramCard {
     required this.status,
   });
 
-  static CoachingProgramCard get dummy => CoachingProgramCard(
-    id: 12,
-    thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwJPOxfRiaHwXkICnf6LKMHIPWJPGLx8wht-wZH-qFs0OXXUCBvOeCQTs79z7Bx9odsdsB&s=10",
-    title: "haha",
-    memberCount: 120,
-    status: "Active",
-  );
-
   String get formattedMemberCount => "$memberCount members";
 }

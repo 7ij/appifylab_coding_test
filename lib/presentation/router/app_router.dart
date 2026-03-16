@@ -56,10 +56,10 @@ final GoRouter appRouter = GoRouter(
       path: RoutePaths.coachingDetails,
       name: RouteNames.coachingDetails,
       pageBuilder: (context, state) {
-        final coachingProgram = state.extra as CoachingProgramCard;
+        final coachingId = state.extra as int;
         return _buildPage(
           key: state.pageKey,
-          child: CoachingDetailsScreen(coachingProgram: coachingProgram),
+          child: CoachingDetailsScreen(coachingId: coachingId,),
         );
       },
     ),

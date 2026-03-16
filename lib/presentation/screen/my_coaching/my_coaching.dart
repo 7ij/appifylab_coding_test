@@ -59,7 +59,7 @@ class _MyCoachingScreenState extends ConsumerState<MyCoachingScreen> {
                           onTap: () {
                             context.pushNamed(
                               RouteNames.coachingDetails,
-                              extra: program,
+                              extra: program.id,
                             );
                           },
                           coachingProgramCard: program,

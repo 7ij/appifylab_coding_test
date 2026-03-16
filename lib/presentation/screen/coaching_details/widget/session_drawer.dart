@@ -6,11 +6,9 @@ import 'package:flutter/material.dart';
 class SessionDrawer extends StatefulWidget {
   const SessionDrawer({
     super.key,
-    required this.coachingProgram,
     required this.coachingDetails,
   });
 
-  final CoachingProgramCard coachingProgram;
   final CoachingDetails coachingDetails;
 
   @override
@@ -33,7 +31,7 @@ class _SessionDrawerState extends State<SessionDrawer> {
               children: [
                 // todo: use cached network image
                 Image.network(
-                  widget.coachingProgram.thumbnail,
+                  widget.coachingDetails.bannerImage,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) =>
                       const ColoredBox(color: Colors.grey),
@@ -60,7 +58,7 @@ class _SessionDrawerState extends State<SessionDrawer> {
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 2),
                       image: DecorationImage(
-                        image: NetworkImage(widget.coachingProgram.thumbnail),
+                        image: NetworkImage(widget.coachingDetails.bannerImage),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -75,7 +73,7 @@ class _SessionDrawerState extends State<SessionDrawer> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        widget.coachingProgram.title,
+                        widget.coachingDetails.title,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 24,
@@ -99,7 +97,7 @@ class _SessionDrawerState extends State<SessionDrawer> {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            widget.coachingProgram.formattedMemberCount,
+                            widget.coachingDetails.formattedMemberCount,
                             style: const TextStyle(color: Colors.white70),
                           ),
                           const SizedBox(width: 16),

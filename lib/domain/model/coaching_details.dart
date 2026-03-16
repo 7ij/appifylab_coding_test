@@ -1,22 +1,29 @@
 import 'package:appifylab_coding_test/domain/model/session.dart';
 
 class CoachingDetails {
+  final int id;
   final String title;
   final String description;
   final String bannerImage;
   final String? startDate;
+  final int? memberCount;
 
   final List<Session> sessionList;
 
   CoachingDetails({
+    required this.id,
     required this.title,
     required this.description,
     required this.bannerImage,
     required this.sessionList,
     this.startDate,
+    this.memberCount,
   });
 
+  String get formattedMemberCount => '$memberCount members';
+
   static CoachingDetails get dummyCoachingDetails => CoachingDetails(
+    id: 1,
     title: 'Flutter test coaching week',
     description:
         'Overview of the coachign program, showca sing what you will'
