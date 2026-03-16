@@ -1,5 +1,6 @@
 import 'package:appifylab_coding_test/domain/model/coaching_details.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class InfographicSection extends StatelessWidget {
   const InfographicSection({super.key, required this.details});
@@ -34,14 +35,7 @@ class InfographicSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  details.description,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Html(data: details.description),
                 const SizedBox(height: 8),
               ],
             ),

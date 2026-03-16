@@ -1,13 +1,9 @@
 import 'package:appifylab_coding_test/domain/model/coaching_details.dart';
-import 'package:appifylab_coding_test/domain/model/coaching_program_card.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/session_list_item.dart';
 import 'package:flutter/material.dart';
 
 class SessionDrawer extends StatefulWidget {
-  const SessionDrawer({
-    super.key,
-    required this.coachingDetails,
-  });
+  const SessionDrawer({super.key, required this.coachingDetails});
 
   final CoachingDetails coachingDetails;
 
@@ -16,8 +12,6 @@ class SessionDrawer extends StatefulWidget {
 }
 
 class _SessionDrawerState extends State<SessionDrawer> {
-  int? _selectedSessionIndex;
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -126,11 +120,6 @@ class _SessionDrawerState extends State<SessionDrawer> {
               itemBuilder: (context, index) {
                 return SessionListItem(
                   session: widget.coachingDetails.sessionList[index],
-                  onTap: () {
-                    setState(() {
-                      _selectedSessionIndex = index;
-                    });
-                  },
                 );
               },
             ),
