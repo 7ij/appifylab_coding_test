@@ -1,5 +1,7 @@
 import 'package:appifylab_coding_test/data/api/auth_api.dart';
 import 'package:appifylab_coding_test/data/api/auth_api_impl.dart';
+import 'package:appifylab_coding_test/data/api/coach_feed_api.dart';
+import 'package:appifylab_coding_test/data/api/coach_feed_api_impl.dart';
 import 'package:appifylab_coding_test/data/api/coaching_details_api.dart';
 import 'package:appifylab_coding_test/data/api/coaching_details_api_impl.dart';
 import 'package:appifylab_coding_test/data/api/coaching_program_api.dart';
@@ -17,6 +19,9 @@ void setupApiModule() {
     () => CoachNoteApiImpl(client: getIt()),
   );
   getIt.registerLazySingleton<CoachingDetailsApi>(
-        () => CoachingDetailsApiImpl(client: getIt()),
+    () => CoachingDetailsApiImpl(client: getIt()),
+  );
+  getIt.registerLazySingleton<CoachFeedApi>(
+    () => CoachFeedApiImpl(client: getIt()),
   );
 }
