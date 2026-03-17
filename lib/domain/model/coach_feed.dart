@@ -48,9 +48,15 @@ class JournalType extends FeedData {
   final bool allowEdit;
   final String description;
   final int charLimit;
+  final List<String> previousAnsweres;
 
-  JournalType({required this.title, required this.allowEdit, required this.description, required this.charLimit});
-
+  JournalType({
+    required this.title,
+    required this.allowEdit,
+    required this.description,
+    required this.charLimit,
+    required this.previousAnsweres
+  });
 }
 
 class ExerciseType extends FeedData {

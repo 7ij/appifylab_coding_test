@@ -1,6 +1,7 @@
 import 'package:appifylab_coding_test/domain/model/coach_feed.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/notifier/coaching_feed_notifier.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/state/coaching_feed_state.dart';
+import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/empty_list_widget.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/journal_card.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/lesson_card.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/task_card.dart';
@@ -39,25 +40,7 @@ class _FeedListState extends ConsumerState<FeedList> {
           return const SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 64),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.feed_outlined,
-                    size: 64,
-                    color: Colors.grey,
-                  ),
-                  SizedBox(height: 16),
-                  Text(
-                    'No items available for this session',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
+              child: EmptyListWidget(),
             ),
           );
         }
@@ -115,7 +98,7 @@ class _FeedSliverList extends StatelessWidget {
           case LessonType():
             return LessonCard(feed: feed);
           case JournalType():
-            return const JournalCard();
+            return JournalCard(feed: feed);
           case ExerciseType():
             return const TaskCard();
         }

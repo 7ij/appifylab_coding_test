@@ -11,6 +11,10 @@ _CoachFeedResponse _$CoachFeedResponseFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num?)?.toInt(),
       feedType: json['feedType'] as String?,
       feedDataResponse: json['feedData'] as String?,
+      coachingProgramSubmission:
+          (json['coachingProgramSubmission'] as List<dynamic>?)
+              ?.map((e) => e as Map<String, dynamic>)
+              .toList(),
       commentCount: (json['commentCount'] as num?)?.toInt(),
     );
 
@@ -19,5 +23,6 @@ Map<String, dynamic> _$CoachFeedResponseToJson(_CoachFeedResponse instance) =>
       'id': instance.id,
       'feedType': instance.feedType,
       'feedData': instance.feedDataResponse,
+      'coachingProgramSubmission': instance.coachingProgramSubmission,
       'commentCount': instance.commentCount,
     };

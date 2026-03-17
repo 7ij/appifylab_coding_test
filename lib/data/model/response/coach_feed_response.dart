@@ -11,6 +11,7 @@ abstract class CoachFeedResponse with _$CoachFeedResponse {
     int? id,
     String? feedType,
     @JsonKey(name: 'feedData') String? feedDataResponse,
+    List<JSONObject>? coachingProgramSubmission,
     int? commentCount,
   }) = _CoachFeedResponse;
 

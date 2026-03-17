@@ -21,14 +21,25 @@ extension CoachFeedResponseMapper on CoachFeedResponse {
         type: LessonContentType.fromString(feedData?['type'] ?? ''),
         commentCount: commentCount ?? 0,
       );
-    } else // (feedType == 'Journal') {
-    {
+    } else if (feedType == 'Journal') {
       final feedData = jsonDecode(feedDataResponse!)['journal'];
+      var previousAnswers = coachingProgramSubmission?.map((e) => e['answer'] as String).toList() ?? [];
       return JournalType(
         title: feedData?['title'] ?? '',
         description: feedData?['description'] ?? '',
         allowEdit: feedData?['allow_edit'] ?? false,
         charLimit: feedData?['char_limit'] ?? -1,
+        previousAnsweres: previousAnswers,
+      );
+    } else {
+      final feedData = jsonDecode(feedDataResponse!)['task_exercise'];
+      // var previousAnswers = coachingProgramSubmission?.map((e) => e['answer'] as String).toList() ?? [];
+      return JournalType(
+        title: feedData?['title'] ?? '',
+        description: feedData?['description'] ?? '',
+        allowEdit: feedData?['allow_edit'] ?? false,
+        charLimit: feedData?['char_limit'] ?? -1,
+        previousAnsweres: [],
       );
     }
   }
