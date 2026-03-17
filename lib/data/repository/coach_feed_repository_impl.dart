@@ -12,7 +12,7 @@ class CoachFeedRepositoryImpl extends CoachFeedRepository {
   CoachFeedRepositoryImpl({required this.coachFeedApi});
 
   @override
-  Future<PaginatedData<CoachFeed>> getCoachFeeds(CoachFeedQuery query) async {
+  Future<PaginatedData<FeedData>> getCoachFeeds(CoachFeedQuery query) async {
     final response = await coachFeedApi.getCoachFeeds(query);
     return response.toPaginatedData((e) => e.toDomain());
   }

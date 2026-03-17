@@ -1,6 +1,9 @@
 import 'package:appifylab_coding_test/domain/model/coaching_details.dart';
+import 'package:appifylab_coding_test/domain/model/session.dart';
+import 'package:appifylab_coding_test/presentation/screen/coaching_details/notifier/coaching_details_notifier.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/session_list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SessionDrawer extends StatefulWidget {
   const SessionDrawer({super.key, required this.coachingDetails});
@@ -113,19 +116,57 @@ class _SessionDrawerState extends State<SessionDrawer> {
               ],
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: widget.coachingDetails.sessionList.length,
-              itemBuilder: (context, index) {
-                return SessionListItem(
-                  session: widget.coachingDetails.sessionList[index],
-                );
-              },
-            ),
-          ),
+          SessionList(coachingDetails: widget.coachingDetails),
         ],
       ),
     );
+  }
+}
+
+class SessionList extends ConsumerStatefulWidget {
+  const SessionList({super.key, required this.coachingDetails});
+
+  final CoachingDetails coachingDetails;
+
+  @override
+  ConsumerState<SessionList> createState() => _SessionListState();
+}
+
+class _SessionListState extends ConsumerState<SessionList> {
+  Session? selectedSession;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedSession = ref.read(coachingDetailsNotifierProvider(
+      widget.coachingDetails.id,
+    ).notifier).currentSession?.parent;
+    debugPrint("selectedSessionId: ${selectedSession?.id}");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: ListView.builder(
+        padding: EdgeInsets.zero,
+        itemCount: widget.coachingDetails.sessionList.length,
+        itemBuilder: (context, index) {
+          return SessionListItem(
+            coachingId: widget.coachingDetails.id,
+            session: widget.coachingDetails.sessionList[index],
+            isSelected:
+            selectedSession != null && selectedSession?.id ==
+                widget.coachingDetails.sessionList[index].id,
+            onSelected: _onSelectChildSession,
+          );
+        },
+      ),
+    );
+  }
+
+  void _onSelectChildSession(Session session) {
+    setState(() {
+      selectedSession = session.parent;
+    });
   }
 }

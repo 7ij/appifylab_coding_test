@@ -1,34 +1,42 @@
 import 'package:appifylab_coding_test/domain/model/session.dart';
-import 'package:flutter/animation.dart';
+import 'package:appifylab_coding_test/presentation/screen/coaching_details/notifier/coaching_details_notifier.dart';
+import 'package:appifylab_coding_test/presentation/screen/coaching_details/notifier/coaching_feed_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class SessionListItem extends StatefulWidget {
+class SessionListItem extends ConsumerStatefulWidget {
   final Session session;
-  final VoidCallback onTap;
+
+  final bool isSelected;
+
+  final int coachingId;
+
+  final void Function(Session session) onSelected;
 
   const SessionListItem({
     super.key,
-    required this.onTap,
     required this.session,
+    required this.isSelected,
+    required this.onSelected,
+    required this.coachingId,
   });
 
   @override
-  State<SessionListItem> createState() => _SessionListItemState();
+  ConsumerState<SessionListItem> createState() => _SessionListItemState();
 }
 
-class _SessionListItemState extends State<SessionListItem> {
+class _SessionListItemState extends ConsumerState<SessionListItem> {
   bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Column(
       children: [
         ListTile(
-          tileColor: widget.session.isCurrent
-              ? theme.colorScheme.primary.withOpacity(0.1)
-              : null,
+          selected: widget.isSelected,
+          selectedTileColor: theme.colorScheme.primary.withAlpha(26),
           leading: const CircleAvatar(child: Icon(Icons.calendar_month)),
           title: Text(widget.session.title),
           subtitle: Row(
@@ -44,7 +52,7 @@ class _SessionListItemState extends State<SessionListItem> {
                   style: const TextStyle(color: Colors.white, fontSize: 10),
                 ),
               ),
-              if (widget.session.isCurrent) ...[
+              if (widget.isSelected) ...[
                 const SizedBox(width: 8),
                 Container(
                   padding: const EdgeInsets.symmetric(
@@ -72,7 +80,6 @@ class _SessionListItemState extends State<SessionListItem> {
             setState(() {
               _isExpanded = !_isExpanded;
             });
-            widget.onTap();
           },
         ),
         ClipRect(
@@ -111,36 +118,57 @@ class _SessionListItemState extends State<SessionListItem> {
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(left: 32.0),
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            radius: 16,
-                            backgroundColor: isCompleted
-                                ? Colors.green.withOpacity(0.2)
-                                : theme.colorScheme.primary.withOpacity(0.1),
-                            child: Icon(
-                              isCompleted ? Icons.check : Icons.calendar_today,
-                              size: 16,
-                              color: isCompleted
-                                  ? Colors.green
-                                  : theme.colorScheme.primary,
+                        child: InkWell(
+                          onTap: () {
+                            ref.read(
+                              coachingDetailsNotifierProvider(
+                                widget.coachingId,
+                              ).notifier,
+                            ).updateCurrentSession(child);
+
+                            ref.invalidate(
+                              coachingFeedNotifierProvider((
+                                coachingId: widget.coachingId,
+                                sessionId: child.id,
+                              )),
+                            );
+
+                            widget.onSelected(child);
+                            context.pop();
+                          },
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              radius: 16,
+                              backgroundColor: isCompleted
+                                  ? Colors.green.withOpacity(0.2)
+                                  : theme.colorScheme.primary.withOpacity(0.1),
+                              child: Icon(
+                                isCompleted
+                                    ? Icons.check
+                                    : Icons.calendar_today,
+                                size: 16,
+                                color: isCompleted
+                                    ? Colors.green
+                                    : theme.colorScheme.primary,
+                              ),
                             ),
-                          ),
-                          title: Text(
-                            child.title,
-                            style: TextStyle(
-                              color: isCompleted ? Colors.green : null,
+                            title: Text(
+                              child.title,
+                              style: TextStyle(
+                                color: isCompleted ? Colors.green : null,
+                              ),
                             ),
+                            subtitle: child.date != null
+                                ? Text(
+                                    child.date!,
+                                    style: TextStyle(
+                                      color: isCompleted
+                                          ? Colors.green.withOpacity(0.8)
+                                          : null,
+                                    ),
+                                  )
+                                : null,
                           ),
-                          subtitle: child.date != null
-                              ? Text(
-                                  child.date!,
-                                  style: TextStyle(
-                                    color: isCompleted
-                                        ? Colors.green.withOpacity(0.8)
-                                        : null,
-                                  ),
-                                )
-                              : null,
                         ),
                       ),
                     ),

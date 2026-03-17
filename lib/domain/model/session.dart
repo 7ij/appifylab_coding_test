@@ -6,6 +6,7 @@ class Session {
   final String? date;
   final bool isCompleted;
   final List<Session>? children;
+  final Session? parent;
 
   Session({
     required this.title,
@@ -15,6 +16,7 @@ class Session {
     this.children,
     required this.isCompleted,
     required this.id,
+    this.parent,
   });
 
   Session copyWith({
@@ -25,6 +27,7 @@ class Session {
     String? date,
     List<Session>? children,
     bool? isCompleted,
+    Session? parent,
   }) {
     return Session(
       id: id ?? this.id,
@@ -34,6 +37,7 @@ class Session {
       date: date ?? this.date,
       children: children ?? this.children,
       isCompleted: isCompleted ?? this.isCompleted,
+      parent: parent ?? this.parent
     );
   }
 }

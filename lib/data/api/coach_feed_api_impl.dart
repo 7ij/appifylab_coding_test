@@ -23,8 +23,7 @@ class CoachFeedApiImpl extends CoachFeedApi {
       converter: (json) {
         return PaginatedDataResponse<CoachFeedResponse>.fromJson(
           json,
-          (fromJsonT) =>
-              CoachFeedResponse.fromJson(fromJsonT as Map<String, dynamic>),
+          (fromJsonT) => CoachFeedResponse.fromJson(fromJsonT),
         );
       },
     );

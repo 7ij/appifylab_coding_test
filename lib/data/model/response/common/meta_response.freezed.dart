@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MetaResponse {
 
-@JsonKey(name: 'total', defaultValue: 0) int get count;@JsonKey(name: 'per_page', defaultValue: 0) int get perPage;@JsonKey(name: 'current_page') int get currentPage;@JsonKey(name: 'first_page') int? get firstPage;@JsonKey(name: 'first_page_url') String? get firstPageUrl;@JsonKey(name: 'last_page_url') String? get lastPageUrl;@JsonKey(name: 'next_page_url') String? get nextPageUrl;@JsonKey(name: 'previous_page_url') String? get previousPageUrl;
+@JsonKey(name: 'total', defaultValue: 0) int get count;@JsonKey(readValue: _readPerPage, defaultValue: 0) int get perPage;@JsonKey(readValue: _readCurrentPage) int get currentPage;@JsonKey(readValue: _readFirstPage, defaultValue: 0) int? get firstPage;@JsonKey(readValue: _readFirstPageUrl) String? get firstPageUrl;@JsonKey(readValue: _readLastPageUrl) String? get lastPageUrl;@JsonKey(readValue: _readNextPageUrl) String? get nextPageUrl;@JsonKey(readValue: _readPreviousPageUrl) String? get previousPageUrl;
 /// Create a copy of MetaResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $MetaResponseCopyWith<$Res>  {
   factory $MetaResponseCopyWith(MetaResponse value, $Res Function(MetaResponse) _then) = _$MetaResponseCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'total', defaultValue: 0) int count,@JsonKey(name: 'per_page', defaultValue: 0) int perPage,@JsonKey(name: 'current_page') int currentPage,@JsonKey(name: 'first_page') int? firstPage,@JsonKey(name: 'first_page_url') String? firstPageUrl,@JsonKey(name: 'last_page_url') String? lastPageUrl,@JsonKey(name: 'next_page_url') String? nextPageUrl,@JsonKey(name: 'previous_page_url') String? previousPageUrl
+@JsonKey(name: 'total', defaultValue: 0) int count,@JsonKey(readValue: _readPerPage, defaultValue: 0) int perPage,@JsonKey(readValue: _readCurrentPage) int currentPage,@JsonKey(readValue: _readFirstPage, defaultValue: 0) int? firstPage,@JsonKey(readValue: _readFirstPageUrl) String? firstPageUrl,@JsonKey(readValue: _readLastPageUrl) String? lastPageUrl,@JsonKey(readValue: _readNextPageUrl) String? nextPageUrl,@JsonKey(readValue: _readPreviousPageUrl) String? previousPageUrl
 });
 
 
@@ -160,7 +160,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'total', defaultValue: 0)  int count, @JsonKey(name: 'per_page', defaultValue: 0)  int perPage, @JsonKey(name: 'current_page')  int currentPage, @JsonKey(name: 'first_page')  int? firstPage, @JsonKey(name: 'first_page_url')  String? firstPageUrl, @JsonKey(name: 'last_page_url')  String? lastPageUrl, @JsonKey(name: 'next_page_url')  String? nextPageUrl, @JsonKey(name: 'previous_page_url')  String? previousPageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'total', defaultValue: 0)  int count, @JsonKey(readValue: _readPerPage, defaultValue: 0)  int perPage, @JsonKey(readValue: _readCurrentPage)  int currentPage, @JsonKey(readValue: _readFirstPage, defaultValue: 0)  int? firstPage, @JsonKey(readValue: _readFirstPageUrl)  String? firstPageUrl, @JsonKey(readValue: _readLastPageUrl)  String? lastPageUrl, @JsonKey(readValue: _readNextPageUrl)  String? nextPageUrl, @JsonKey(readValue: _readPreviousPageUrl)  String? previousPageUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MetaResponse() when $default != null:
 return $default(_that.count,_that.perPage,_that.currentPage,_that.firstPage,_that.firstPageUrl,_that.lastPageUrl,_that.nextPageUrl,_that.previousPageUrl);case _:
@@ -181,7 +181,7 @@ return $default(_that.count,_that.perPage,_that.currentPage,_that.firstPage,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'total', defaultValue: 0)  int count, @JsonKey(name: 'per_page', defaultValue: 0)  int perPage, @JsonKey(name: 'current_page')  int currentPage, @JsonKey(name: 'first_page')  int? firstPage, @JsonKey(name: 'first_page_url')  String? firstPageUrl, @JsonKey(name: 'last_page_url')  String? lastPageUrl, @JsonKey(name: 'next_page_url')  String? nextPageUrl, @JsonKey(name: 'previous_page_url')  String? previousPageUrl)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'total', defaultValue: 0)  int count, @JsonKey(readValue: _readPerPage, defaultValue: 0)  int perPage, @JsonKey(readValue: _readCurrentPage)  int currentPage, @JsonKey(readValue: _readFirstPage, defaultValue: 0)  int? firstPage, @JsonKey(readValue: _readFirstPageUrl)  String? firstPageUrl, @JsonKey(readValue: _readLastPageUrl)  String? lastPageUrl, @JsonKey(readValue: _readNextPageUrl)  String? nextPageUrl, @JsonKey(readValue: _readPreviousPageUrl)  String? previousPageUrl)  $default,) {final _that = this;
 switch (_that) {
 case _MetaResponse():
 return $default(_that.count,_that.perPage,_that.currentPage,_that.firstPage,_that.firstPageUrl,_that.lastPageUrl,_that.nextPageUrl,_that.previousPageUrl);case _:
@@ -201,7 +201,7 @@ return $default(_that.count,_that.perPage,_that.currentPage,_that.firstPage,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'total', defaultValue: 0)  int count, @JsonKey(name: 'per_page', defaultValue: 0)  int perPage, @JsonKey(name: 'current_page')  int currentPage, @JsonKey(name: 'first_page')  int? firstPage, @JsonKey(name: 'first_page_url')  String? firstPageUrl, @JsonKey(name: 'last_page_url')  String? lastPageUrl, @JsonKey(name: 'next_page_url')  String? nextPageUrl, @JsonKey(name: 'previous_page_url')  String? previousPageUrl)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'total', defaultValue: 0)  int count, @JsonKey(readValue: _readPerPage, defaultValue: 0)  int perPage, @JsonKey(readValue: _readCurrentPage)  int currentPage, @JsonKey(readValue: _readFirstPage, defaultValue: 0)  int? firstPage, @JsonKey(readValue: _readFirstPageUrl)  String? firstPageUrl, @JsonKey(readValue: _readLastPageUrl)  String? lastPageUrl, @JsonKey(readValue: _readNextPageUrl)  String? nextPageUrl, @JsonKey(readValue: _readPreviousPageUrl)  String? previousPageUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _MetaResponse() when $default != null:
 return $default(_that.count,_that.perPage,_that.currentPage,_that.firstPage,_that.firstPageUrl,_that.lastPageUrl,_that.nextPageUrl,_that.previousPageUrl);case _:
@@ -216,17 +216,17 @@ return $default(_that.count,_that.perPage,_that.currentPage,_that.firstPage,_tha
 @JsonSerializable()
 
 class _MetaResponse implements MetaResponse {
-  const _MetaResponse(@JsonKey(name: 'total', defaultValue: 0) this.count, @JsonKey(name: 'per_page', defaultValue: 0) this.perPage, @JsonKey(name: 'current_page') this.currentPage, @JsonKey(name: 'first_page') this.firstPage, @JsonKey(name: 'first_page_url') this.firstPageUrl, @JsonKey(name: 'last_page_url') this.lastPageUrl, @JsonKey(name: 'next_page_url') this.nextPageUrl, @JsonKey(name: 'previous_page_url') this.previousPageUrl);
+  const _MetaResponse(@JsonKey(name: 'total', defaultValue: 0) this.count, @JsonKey(readValue: _readPerPage, defaultValue: 0) this.perPage, @JsonKey(readValue: _readCurrentPage) this.currentPage, @JsonKey(readValue: _readFirstPage, defaultValue: 0) this.firstPage, @JsonKey(readValue: _readFirstPageUrl) this.firstPageUrl, @JsonKey(readValue: _readLastPageUrl) this.lastPageUrl, @JsonKey(readValue: _readNextPageUrl) this.nextPageUrl, @JsonKey(readValue: _readPreviousPageUrl) this.previousPageUrl);
   factory _MetaResponse.fromJson(Map<String, dynamic> json,) => _$MetaResponseFromJson(json,);
 
 @override@JsonKey(name: 'total', defaultValue: 0) final  int count;
-@override@JsonKey(name: 'per_page', defaultValue: 0) final  int perPage;
-@override@JsonKey(name: 'current_page') final  int currentPage;
-@override@JsonKey(name: 'first_page') final  int? firstPage;
-@override@JsonKey(name: 'first_page_url') final  String? firstPageUrl;
-@override@JsonKey(name: 'last_page_url') final  String? lastPageUrl;
-@override@JsonKey(name: 'next_page_url') final  String? nextPageUrl;
-@override@JsonKey(name: 'previous_page_url') final  String? previousPageUrl;
+@override@JsonKey(readValue: _readPerPage, defaultValue: 0) final  int perPage;
+@override@JsonKey(readValue: _readCurrentPage) final  int currentPage;
+@override@JsonKey(readValue: _readFirstPage, defaultValue: 0) final  int? firstPage;
+@override@JsonKey(readValue: _readFirstPageUrl) final  String? firstPageUrl;
+@override@JsonKey(readValue: _readLastPageUrl) final  String? lastPageUrl;
+@override@JsonKey(readValue: _readNextPageUrl) final  String? nextPageUrl;
+@override@JsonKey(readValue: _readPreviousPageUrl) final  String? previousPageUrl;
 
 /// Create a copy of MetaResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -261,7 +261,7 @@ abstract mixin class _$MetaResponseCopyWith<$Res> implements $MetaResponseCopyWi
   factory _$MetaResponseCopyWith(_MetaResponse value, $Res Function(_MetaResponse) _then) = __$MetaResponseCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'total', defaultValue: 0) int count,@JsonKey(name: 'per_page', defaultValue: 0) int perPage,@JsonKey(name: 'current_page') int currentPage,@JsonKey(name: 'first_page') int? firstPage,@JsonKey(name: 'first_page_url') String? firstPageUrl,@JsonKey(name: 'last_page_url') String? lastPageUrl,@JsonKey(name: 'next_page_url') String? nextPageUrl,@JsonKey(name: 'previous_page_url') String? previousPageUrl
+@JsonKey(name: 'total', defaultValue: 0) int count,@JsonKey(readValue: _readPerPage, defaultValue: 0) int perPage,@JsonKey(readValue: _readCurrentPage) int currentPage,@JsonKey(readValue: _readFirstPage, defaultValue: 0) int? firstPage,@JsonKey(readValue: _readFirstPageUrl) String? firstPageUrl,@JsonKey(readValue: _readLastPageUrl) String? lastPageUrl,@JsonKey(readValue: _readNextPageUrl) String? nextPageUrl,@JsonKey(readValue: _readPreviousPageUrl) String? previousPageUrl
 });
 
 

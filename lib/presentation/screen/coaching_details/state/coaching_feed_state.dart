@@ -1,7 +1,7 @@
 import 'package:appifylab_coding_test/domain/model/coach_feed.dart';
 
 class CoachingFeedState {
-  final List<CoachFeed> feeds;
+  final List<FeedData> feeds;
   final bool hasMore;
   final int page;
   final bool isFetchingMore;
@@ -14,7 +14,7 @@ class CoachingFeedState {
   });
 
   CoachingFeedState copyWith({
-    List<CoachFeed>? feeds,
+    List<FeedData>? feeds,
     bool? hasMore,
     int? page,
     bool? isFetchingMore,

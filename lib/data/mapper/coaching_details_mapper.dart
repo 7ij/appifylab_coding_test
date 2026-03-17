@@ -33,16 +33,17 @@ extension CoachingDetailsResponseMapper on CoachFeedContentResponse {
 
     final List<Session> sessionList = [];
     for (final e in parentSessionResponseList) {
+      final parentSession = e.toDomain();
       bool isCurrent = false;
       final childrenList = map[e.id!]!.map((elem) {
-        final elemModel = elem.toDomain();
+        final elemModel = elem.toDomain().copyWith(parent: parentSession);
         if (elemModel.isCurrent) {
           isCurrent = true;
         }
         return elemModel;
       }).toList();
       sessionList.add(
-        e.toDomain().copyWith(children: childrenList, isCurrent: isCurrent),
+        parentSession.copyWith(children: childrenList, isCurrent: isCurrent),
       );
     }
     return sessionList;

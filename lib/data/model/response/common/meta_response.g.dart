@@ -9,23 +9,23 @@ part of 'meta_response.dart';
 _MetaResponse _$MetaResponseFromJson(Map<String, dynamic> json) =>
     _MetaResponse(
       (json['total'] as num?)?.toInt() ?? 0,
-      (json['per_page'] as num?)?.toInt() ?? 0,
-      (json['current_page'] as num).toInt(),
-      (json['first_page'] as num?)?.toInt(),
-      json['first_page_url'] as String?,
-      json['last_page_url'] as String?,
-      json['next_page_url'] as String?,
-      json['previous_page_url'] as String?,
+      (_readPerPage(json, 'perPage') as num?)?.toInt() ?? 0,
+      (_readCurrentPage(json, 'currentPage') as num).toInt(),
+      (_readFirstPage(json, 'firstPage') as num?)?.toInt() ?? 0,
+      _readFirstPageUrl(json, 'firstPageUrl') as String?,
+      _readLastPageUrl(json, 'lastPageUrl') as String?,
+      _readNextPageUrl(json, 'nextPageUrl') as String?,
+      _readPreviousPageUrl(json, 'previousPageUrl') as String?,
     );
 
 Map<String, dynamic> _$MetaResponseToJson(_MetaResponse instance) =>
     <String, dynamic>{
       'total': instance.count,
-      'per_page': instance.perPage,
-      'current_page': instance.currentPage,
-      'first_page': instance.firstPage,
-      'first_page_url': instance.firstPageUrl,
-      'last_page_url': instance.lastPageUrl,
-      'next_page_url': instance.nextPageUrl,
-      'previous_page_url': instance.previousPageUrl,
+      'perPage': instance.perPage,
+      'currentPage': instance.currentPage,
+      'firstPage': instance.firstPage,
+      'firstPageUrl': instance.firstPageUrl,
+      'lastPageUrl': instance.lastPageUrl,
+      'nextPageUrl': instance.nextPageUrl,
+      'previousPageUrl': instance.previousPageUrl,
     };
