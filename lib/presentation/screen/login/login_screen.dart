@@ -156,24 +156,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        Checkbox(
-                          value: state.rememberMe,
-                          onChanged:
-                              state.isLoading ? null : notifier.toggleRememberMe,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Remember me',
-                          style: textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
                     const SizedBox(height: 20),
                     SizedBox(
                       width: double.infinity,

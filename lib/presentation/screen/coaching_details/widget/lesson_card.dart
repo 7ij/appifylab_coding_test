@@ -1,4 +1,4 @@
-import 'package:appifylab_coding_test/domain/model/coach_feed.dart';
+import 'package:appifylab_coding_test/domain/model/feed_data.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/app_audio_player.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/app_video_player.dart';
 import 'package:flutter/material.dart';
@@ -57,9 +57,7 @@ class LessonCard extends StatelessWidget {
   Widget _buildHeader(BuildContext context, ColorScheme colorScheme) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: colorScheme.outlineVariant),
-        ),
+        border: Border(bottom: BorderSide(color: colorScheme.outlineVariant)),
       ),
       padding: const EdgeInsets.all(16),
       child: Row(
@@ -85,14 +83,14 @@ class LessonCard extends StatelessWidget {
                 Text(
                   feed.title,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 Text(
                   feed.uploadFiles.fileType.toUpperCase(),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: colorScheme.onSurfaceVariant,
-                      ),
+                    color: colorScheme.onSurfaceVariant,
+                  ),
                 ),
               ],
             ),
@@ -167,23 +165,26 @@ class LessonCard extends StatelessWidget {
                   Text(
                     label,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: color,
-                        ),
+                      fontWeight: FontWeight.bold,
+                      color: color,
+                    ),
                   ),
                   Text(
                     feed.uploadFiles.fileName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: colorScheme.onSurfaceVariant,
-                        ),
+                      color: colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ],
               ),
             ),
-            Icon(Icons.open_in_new_rounded,
-                size: 20, color: colorScheme.onSurfaceVariant),
+            Icon(
+              Icons.open_in_new_rounded,
+              size: 20,
+              color: colorScheme.onSurfaceVariant,
+            ),
           ],
         ),
       ),
@@ -196,9 +197,7 @@ class LessonCard extends StatelessWidget {
       icon: const Icon(Icons.comment_outlined, size: 18),
       label: Text('${feed.commentCount} Comments'),
       style: OutlinedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     );
   }

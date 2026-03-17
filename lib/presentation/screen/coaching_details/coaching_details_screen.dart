@@ -25,6 +25,7 @@ class _CoachingDetailsScreenState extends ConsumerState<CoachingDetailsScreen> {
 
     final currentSession = ref.watch(selectedSessionProvider(widget.coachingId));
     final sessionId = currentSession?.id ?? 0;
+    final parentSessionId = currentSession?.parent?.id ?? 0;
 
     return uiState.when(
       data: (details) => Scaffold(
@@ -58,6 +59,7 @@ class _CoachingDetailsScreenState extends ConsumerState<CoachingDetailsScreen> {
                   sliver: FeedList(
                     coachingId: widget.coachingId,
                     sessionId: sessionId,
+                    sessionParentId: parentSessionId,
                   ),
                 ),
               ],

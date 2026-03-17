@@ -1,4 +1,4 @@
-import 'package:appifylab_coding_test/domain/model/coach_feed.dart';
+import 'package:appifylab_coding_test/domain/model/feed_data.dart';
 
 class CoachingFeedState {
   final List<FeedData> feeds;

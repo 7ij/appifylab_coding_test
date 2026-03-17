@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CoachFeedResponse {
 
- int? get id; String? get feedType;@JsonKey(name: 'feedData') String? get feedDataResponse; List<JSONObject>? get coachingProgramSubmission; int? get commentCount;
+ int? get id; String? get feedType;@JsonKey(name: 'feedData') String? get feedDataResponse; List<JSONObject>? get coachingProgramSubmission; int? get commentCount; TrackerResponse? get tracker;
 /// Create a copy of CoachFeedResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $CoachFeedResponseCopyWith<CoachFeedResponse> get copyWith => _$CoachFeedRespons
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CoachFeedResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.feedType, feedType) || other.feedType == feedType)&&(identical(other.feedDataResponse, feedDataResponse) || other.feedDataResponse == feedDataResponse)&&const DeepCollectionEquality().equals(other.coachingProgramSubmission, coachingProgramSubmission)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CoachFeedResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.feedType, feedType) || other.feedType == feedType)&&(identical(other.feedDataResponse, feedDataResponse) || other.feedDataResponse == feedDataResponse)&&const DeepCollectionEquality().equals(other.coachingProgramSubmission, coachingProgramSubmission)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&(identical(other.tracker, tracker) || other.tracker == tracker));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,feedType,feedDataResponse,const DeepCollectionEquality().hash(coachingProgramSubmission),commentCount);
+int get hashCode => Object.hash(runtimeType,id,feedType,feedDataResponse,const DeepCollectionEquality().hash(coachingProgramSubmission),commentCount,tracker);
 
 @override
 String toString() {
-  return 'CoachFeedResponse(id: $id, feedType: $feedType, feedDataResponse: $feedDataResponse, coachingProgramSubmission: $coachingProgramSubmission, commentCount: $commentCount)';
+  return 'CoachFeedResponse(id: $id, feedType: $feedType, feedDataResponse: $feedDataResponse, coachingProgramSubmission: $coachingProgramSubmission, commentCount: $commentCount, tracker: $tracker)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $CoachFeedResponseCopyWith<$Res>  {
   factory $CoachFeedResponseCopyWith(CoachFeedResponse value, $Res Function(CoachFeedResponse) _then) = _$CoachFeedResponseCopyWithImpl;
 @useResult
 $Res call({
- int? id, String? feedType,@JsonKey(name: 'feedData') String? feedDataResponse, List<JSONObject>? coachingProgramSubmission, int? commentCount
+ int? id, String? feedType,@JsonKey(name: 'feedData') String? feedDataResponse, List<JSONObject>? coachingProgramSubmission, int? commentCount, TrackerResponse? tracker
 });
 
 
-
+$TrackerResponseCopyWith<$Res>? get tracker;
 
 }
 /// @nodoc
@@ -65,17 +65,30 @@ class _$CoachFeedResponseCopyWithImpl<$Res>
 
 /// Create a copy of CoachFeedResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? feedType = freezed,Object? feedDataResponse = freezed,Object? coachingProgramSubmission = freezed,Object? commentCount = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? feedType = freezed,Object? feedDataResponse = freezed,Object? coachingProgramSubmission = freezed,Object? commentCount = freezed,Object? tracker = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,feedType: freezed == feedType ? _self.feedType : feedType // ignore: cast_nullable_to_non_nullable
 as String?,feedDataResponse: freezed == feedDataResponse ? _self.feedDataResponse : feedDataResponse // ignore: cast_nullable_to_non_nullable
 as String?,coachingProgramSubmission: freezed == coachingProgramSubmission ? _self.coachingProgramSubmission : coachingProgramSubmission // ignore: cast_nullable_to_non_nullable
 as List<JSONObject>?,commentCount: freezed == commentCount ? _self.commentCount : commentCount // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,tracker: freezed == tracker ? _self.tracker : tracker // ignore: cast_nullable_to_non_nullable
+as TrackerResponse?,
   ));
 }
+/// Create a copy of CoachFeedResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TrackerResponseCopyWith<$Res>? get tracker {
+    if (_self.tracker == null) {
+    return null;
+  }
 
+  return $TrackerResponseCopyWith<$Res>(_self.tracker!, (value) {
+    return _then(_self.copyWith(tracker: value));
+  });
+}
 }
 
 
@@ -157,10 +170,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? feedType, @JsonKey(name: 'feedData')  String? feedDataResponse,  List<JSONObject>? coachingProgramSubmission,  int? commentCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? feedType, @JsonKey(name: 'feedData')  String? feedDataResponse,  List<JSONObject>? coachingProgramSubmission,  int? commentCount,  TrackerResponse? tracker)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CoachFeedResponse() when $default != null:
-return $default(_that.id,_that.feedType,_that.feedDataResponse,_that.coachingProgramSubmission,_that.commentCount);case _:
+return $default(_that.id,_that.feedType,_that.feedDataResponse,_that.coachingProgramSubmission,_that.commentCount,_that.tracker);case _:
   return orElse();
 
 }
@@ -178,10 +191,10 @@ return $default(_that.id,_that.feedType,_that.feedDataResponse,_that.coachingPro
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? feedType, @JsonKey(name: 'feedData')  String? feedDataResponse,  List<JSONObject>? coachingProgramSubmission,  int? commentCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? feedType, @JsonKey(name: 'feedData')  String? feedDataResponse,  List<JSONObject>? coachingProgramSubmission,  int? commentCount,  TrackerResponse? tracker)  $default,) {final _that = this;
 switch (_that) {
 case _CoachFeedResponse():
-return $default(_that.id,_that.feedType,_that.feedDataResponse,_that.coachingProgramSubmission,_that.commentCount);case _:
+return $default(_that.id,_that.feedType,_that.feedDataResponse,_that.coachingProgramSubmission,_that.commentCount,_that.tracker);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +211,10 @@ return $default(_that.id,_that.feedType,_that.feedDataResponse,_that.coachingPro
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? feedType, @JsonKey(name: 'feedData')  String? feedDataResponse,  List<JSONObject>? coachingProgramSubmission,  int? commentCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? feedType, @JsonKey(name: 'feedData')  String? feedDataResponse,  List<JSONObject>? coachingProgramSubmission,  int? commentCount,  TrackerResponse? tracker)?  $default,) {final _that = this;
 switch (_that) {
 case _CoachFeedResponse() when $default != null:
-return $default(_that.id,_that.feedType,_that.feedDataResponse,_that.coachingProgramSubmission,_that.commentCount);case _:
+return $default(_that.id,_that.feedType,_that.feedDataResponse,_that.coachingProgramSubmission,_that.commentCount,_that.tracker);case _:
   return null;
 
 }
@@ -213,7 +226,7 @@ return $default(_that.id,_that.feedType,_that.feedDataResponse,_that.coachingPro
 @JsonSerializable()
 
 class _CoachFeedResponse implements CoachFeedResponse {
-  const _CoachFeedResponse({this.id, this.feedType, @JsonKey(name: 'feedData') this.feedDataResponse, final  List<JSONObject>? coachingProgramSubmission, this.commentCount}): _coachingProgramSubmission = coachingProgramSubmission;
+  const _CoachFeedResponse({this.id, this.feedType, @JsonKey(name: 'feedData') this.feedDataResponse, final  List<JSONObject>? coachingProgramSubmission, this.commentCount, this.tracker}): _coachingProgramSubmission = coachingProgramSubmission;
   factory _CoachFeedResponse.fromJson(Map<String, dynamic> json) => _$CoachFeedResponseFromJson(json);
 
 @override final  int? id;
@@ -229,6 +242,7 @@ class _CoachFeedResponse implements CoachFeedResponse {
 }
 
 @override final  int? commentCount;
+@override final  TrackerResponse? tracker;
 
 /// Create a copy of CoachFeedResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -243,16 +257,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CoachFeedResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.feedType, feedType) || other.feedType == feedType)&&(identical(other.feedDataResponse, feedDataResponse) || other.feedDataResponse == feedDataResponse)&&const DeepCollectionEquality().equals(other._coachingProgramSubmission, _coachingProgramSubmission)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CoachFeedResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.feedType, feedType) || other.feedType == feedType)&&(identical(other.feedDataResponse, feedDataResponse) || other.feedDataResponse == feedDataResponse)&&const DeepCollectionEquality().equals(other._coachingProgramSubmission, _coachingProgramSubmission)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&(identical(other.tracker, tracker) || other.tracker == tracker));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,feedType,feedDataResponse,const DeepCollectionEquality().hash(_coachingProgramSubmission),commentCount);
+int get hashCode => Object.hash(runtimeType,id,feedType,feedDataResponse,const DeepCollectionEquality().hash(_coachingProgramSubmission),commentCount,tracker);
 
 @override
 String toString() {
-  return 'CoachFeedResponse(id: $id, feedType: $feedType, feedDataResponse: $feedDataResponse, coachingProgramSubmission: $coachingProgramSubmission, commentCount: $commentCount)';
+  return 'CoachFeedResponse(id: $id, feedType: $feedType, feedDataResponse: $feedDataResponse, coachingProgramSubmission: $coachingProgramSubmission, commentCount: $commentCount, tracker: $tracker)';
 }
 
 
@@ -263,11 +277,11 @@ abstract mixin class _$CoachFeedResponseCopyWith<$Res> implements $CoachFeedResp
   factory _$CoachFeedResponseCopyWith(_CoachFeedResponse value, $Res Function(_CoachFeedResponse) _then) = __$CoachFeedResponseCopyWithImpl;
 @override @useResult
 $Res call({
- int? id, String? feedType,@JsonKey(name: 'feedData') String? feedDataResponse, List<JSONObject>? coachingProgramSubmission, int? commentCount
+ int? id, String? feedType,@JsonKey(name: 'feedData') String? feedDataResponse, List<JSONObject>? coachingProgramSubmission, int? commentCount, TrackerResponse? tracker
 });
 
 
-
+@override $TrackerResponseCopyWith<$Res>? get tracker;
 
 }
 /// @nodoc
@@ -280,18 +294,31 @@ class __$CoachFeedResponseCopyWithImpl<$Res>
 
 /// Create a copy of CoachFeedResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? feedType = freezed,Object? feedDataResponse = freezed,Object? coachingProgramSubmission = freezed,Object? commentCount = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? feedType = freezed,Object? feedDataResponse = freezed,Object? coachingProgramSubmission = freezed,Object? commentCount = freezed,Object? tracker = freezed,}) {
   return _then(_CoachFeedResponse(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,feedType: freezed == feedType ? _self.feedType : feedType // ignore: cast_nullable_to_non_nullable
 as String?,feedDataResponse: freezed == feedDataResponse ? _self.feedDataResponse : feedDataResponse // ignore: cast_nullable_to_non_nullable
 as String?,coachingProgramSubmission: freezed == coachingProgramSubmission ? _self._coachingProgramSubmission : coachingProgramSubmission // ignore: cast_nullable_to_non_nullable
 as List<JSONObject>?,commentCount: freezed == commentCount ? _self.commentCount : commentCount // ignore: cast_nullable_to_non_nullable
-as int?,
+as int?,tracker: freezed == tracker ? _self.tracker : tracker // ignore: cast_nullable_to_non_nullable
+as TrackerResponse?,
   ));
 }
 
+/// Create a copy of CoachFeedResponse
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TrackerResponseCopyWith<$Res>? get tracker {
+    if (_self.tracker == null) {
+    return null;
+  }
 
+  return $TrackerResponseCopyWith<$Res>(_self.tracker!, (value) {
+    return _then(_self.copyWith(tracker: value));
+  });
+}
 }
 
 // dart format on

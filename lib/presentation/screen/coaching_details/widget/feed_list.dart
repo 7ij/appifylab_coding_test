@@ -1,4 +1,4 @@
-import 'package:appifylab_coding_test/domain/model/coach_feed.dart';
+import 'package:appifylab_coding_test/domain/model/feed_data.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/notifier/coaching_feed_notifier.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/state/coaching_feed_state.dart';
 import 'package:appifylab_coding_test/presentation/screen/coaching_details/widget/empty_list_widget.dart';
@@ -11,11 +11,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class FeedList extends ConsumerStatefulWidget {
   final int coachingId;
   final int sessionId;
+  final int sessionParentId;
 
   const FeedList({
     super.key,
     required this.coachingId,
     required this.sessionId,
+    required this.sessionParentId,
   });
 
   @override
@@ -45,6 +47,9 @@ class _FeedListState extends ConsumerState<FeedList> {
           );
         }
         return _FeedSliverList(
+          coachingId: widget.coachingId,
+          sessionId: widget.sessionId,
+          sessionParentId: widget.sessionParentId,
           feeds: state.feeds,
           hasMore: state.hasMore,
           isFetchingMore: state.isFetchingMore,
@@ -68,12 +73,18 @@ class _FeedListState extends ConsumerState<FeedList> {
 }
 
 class _FeedSliverList extends StatelessWidget {
+  final int coachingId;
+  final int sessionId;
+  final int sessionParentId;
   final List<FeedData> feeds;
   final bool hasMore;
   final bool isFetchingMore;
   final VoidCallback onLoadMore;
 
   const _FeedSliverList({
+    required this.coachingId,
+    required this.sessionId,
+    required this.sessionParentId,
     required this.feeds,
     required this.hasMore,
     required this.isFetchingMore,
@@ -98,9 +109,14 @@ class _FeedSliverList extends StatelessWidget {
           case LessonType():
             return LessonCard(feed: feed);
           case JournalType():
-            return JournalCard(feed: feed);
+            return JournalCard(
+              feed: feed,
+              coachingId: coachingId,
+              subSessionId: sessionId,
+              sessionParentId: sessionParentId,
+            );
           case ExerciseType():
-            return const TaskCard();
+            return TaskCard(feed: feed);
         }
       },
       separatorBuilder: (context, index) => const SizedBox(height: 8),

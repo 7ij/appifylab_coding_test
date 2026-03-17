@@ -1,3 +1,4 @@
+import 'package:appifylab_coding_test/data/model/response/tracker_response.dart';
 import 'package:appifylab_coding_test/di/util/api_client.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,6 +14,7 @@ abstract class CoachFeedResponse with _$CoachFeedResponse {
     @JsonKey(name: 'feedData') String? feedDataResponse,
     List<JSONObject>? coachingProgramSubmission,
     int? commentCount,
+    TrackerResponse? tracker,
   }) = _CoachFeedResponse;
 
   factory CoachFeedResponse.fromJson(Map<String, dynamic> json) =>
