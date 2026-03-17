@@ -4,6 +4,7 @@ import 'package:appifylab_coding_test/domain/use_case/get_coaching_details_use_c
 import 'package:appifylab_coding_test/domain/use_case/get_coaching_program_list_use_case.dart';
 import 'package:appifylab_coding_test/domain/use_case/login_with_email_pass_use_case.dart';
 import 'package:appifylab_coding_test/domain/use_case/get_coach_notes_use_case.dart';
+import 'package:appifylab_coding_test/domain/use_case/submit_journal_use_case.dart';
 
 void setupUseCaseModule() {
   getIt.registerLazySingleton<LoginWithEmailPassUseCase>(
@@ -20,5 +21,8 @@ void setupUseCaseModule() {
   );
   getIt.registerLazySingleton<GetCoachFeedsUseCase>(
     () => GetCoachFeedsUseCase(repository: getIt()),
+  );
+  getIt.registerLazySingleton<SubmitJournalUseCase>(
+    () => SubmitJournalUseCase(repository: getIt()),
   );
 }
